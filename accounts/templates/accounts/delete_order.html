@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+{%extends 'accounts/navbar.html'%}
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    {%block content%}
+      {% include 'accounts/main.html'%}
+  <div class="" align='center'>
+    <div class="card text-white bg-info mb-3" style="max-width: 18rem;" align='center'>
+
+   <div class="card-body" align='center'>
+    <p>Are you sure you want to delete the {{order}}? </p>
+          <form action="{% url 'delete_order' order.id %}" method="post">
+             {% csrf_token %}
+            <a class='btn btn-sm btn-warning' href="/">Cancel</a>
+            <input class='btn btn-sm btn-danger' type="submit" value="Delete">
+          </form>
+  </div>
+</div>
+
+  </div>
+
+
+
+
+
+
+
+    {% endblock%}
+
+  </body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+{%extends 'accounts/navbar.html'%}
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    {%block content%}
+      {% include 'accounts/main.html'%}
+
+      <div class="" align='center'>
+        <div class="card border-info mb-10" style="max-width: 50rem;">
+          <div class="card-header"> Order</div>
+          <div class="card-body text-info">
+            <form  method="post">
+              {% csrf_token %}
+              {{formset.management_form}}
+              {% for eachform in formset%}
+              {{eachform }}<hr>
+              {% endfor%}
+
+               <hr>
+               <a class='btn btn-sm btn-info'  href="/">Cancel</a>
+              <input class='btn btn-sm btn-info' type="submit" name="" value="Save">
+            </form>
+          </div>
+        </div>
+
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    {% endblock%}
+
+
+  </body>
+</html>

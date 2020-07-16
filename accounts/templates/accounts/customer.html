@@ -1,0 +1,88 @@
+{%extends 'accounts/navbar.html'%}<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    {%block content%}
+      <h1>This is Customer page</h1>
+      <br>
+
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<h3>Customer:{{customer.name}}</h3>
+			<hr>
+			<a class="btn btn-outline-info  btn-sm btn-block" href="{% url 'update_customer' customer.id %}">Update Customer</a>
+			<a class="btn btn-outline-info  btn-sm btn-block" href="{% url 'create_order' customer.id %}">Create Order</a>
+
+		</div>
+	</div>
+
+	<div class="col-md">
+		<div class="card card-body">
+			<h5>Contact Information</h5>
+			<hr>
+			<p>Email: &nbsp;&nbsp;{{  customer.mail}} </p>
+			<p>Phone:  &nbsp;&nbsp{{  customer.phone}}</p>
+		</div>
+	</div>
+
+	<div class="col-md">
+		<div class="card card-body">
+			<h5>Total Orders</h5>
+			<hr>
+			<h1 style="text-align: center;padding: 10px">{{orders_count}}</h1>
+		</div>
+	</div>
+</div>
+
+
+<br>
+<div class="row">
+	<div class="col">
+		<div class="card card-body">
+			<form method="get">
+         {{myfilter.form}}
+		    <button class="btn btn-primary" type="submit">Search</button>
+		  </form>
+		</div>
+	</div>
+
+</div>
+<br>
+
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<table class="table table-sm">
+				<tr>
+					<th>Product</th>
+					<th>Category</th>
+					<th>Date Orderd</th>
+					<th>Status</th>
+					<th>Update</th>
+					<th>Remove</th>
+				</tr>
+        {%for i in orders %}
+        <tr>
+          <td>{{i.products_mod.name}}</td>
+          <td>{{i.products_mod.category}}</td>
+          <td>{{i.products_mod.date_created}}</td>
+          <td>{{i.status}}</td>
+          <td>  <a class= 'btn btn-sm btn-info' href="{% url 'update_order' i.id %}">Update</a></td>
+          <td>  <a class= 'btn btn-sm btn-danger' href="{% url 'delete_order' i.id %}">Delete</a></td>
+
+        </tr>
+        {%endfor%}
+
+			</table>
+		</div>
+	</div>
+</div>
+    {% endblock %}
+
+  </body>
+</html>

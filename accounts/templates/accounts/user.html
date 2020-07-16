@@ -1,0 +1,37 @@
+
+{%  extends 'accounts/navbar.html' %}
+{% load static %}
+{% block content %}
+{%  include 'accounts/status.html' %}
+{% include 'accounts/main.html'%}
+
+
+<h3>User Profile</h3>
+
+<div class="row">
+    <div class="col-md">
+        <div class="card card-body">
+            <table class="table table-sm">
+                <tr>
+                    <th>Product</th>
+                    <th>Category</th>
+                    <th>Date Orderd</th>
+                    <th>Status</th>
+                    
+                </tr>
+                {%for i in orders %}
+                <tr>
+                    <td>{{i.products_mod.name}}</td>
+                    <td>{{i.products_mod.category}}</td>
+                    <td>{{i.products_mod.date_created}}</td>
+                    <td>{{i.status}}</td>
+                    
+                </tr>
+                {%endfor%}
+
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
